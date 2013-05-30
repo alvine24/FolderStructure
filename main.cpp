@@ -1,21 +1,5 @@
 #include <QApplication>
-#include "XmlTest.h"
-#include "ClassXml.h"
 #include "FileRead.h"
-
-bool testXml()
-{
-    XmlTest test;
-    test.CreateXMLFile();
-    return test.mresult;
-}
-
-bool testClassXml()
-{
-    ClassXml test1;
-    test1.FileXml();
-    return test1.mresult;
-}
 
 bool testFileRead()
 {
