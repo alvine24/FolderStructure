@@ -5,7 +5,7 @@ FileRead::FileRead()
 {
 }
 
-void FileRead::listFiles(QString mDir){
+QHash<QString, QString> FileRead::listFiles(QString mDir){
     QDir dir(mDir);
     QFileInfoList list = dir.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
     foreach(QFileInfo finfo, list) {
@@ -24,4 +24,16 @@ void FileRead::listFiles(QString mDir){
             }
         }
     }
+    return mylist;
+}
+
+QList<QString> FileRead::compareFileList(QHash<QString, QString> local, QHash<QString, QString> remote){
+    QString key;
+    QList<QString> result;
+    foreach(key, local.keys()){
+        if(!remote.contains(key)){
+            result.append(local[key]);
+        }
+    }
+    return result;
 }

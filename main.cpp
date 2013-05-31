@@ -4,8 +4,11 @@
 bool testFileRead()
 {
     FileRead test2;
-    test2.listFiles(QDir::currentPath());
-    qDebug() << "Count : " << test2.mylist.count();
+    QHash<QString, QString> myHash = test2.listFiles(QDir::currentPath());
+    QString key;
+    foreach(key, myHash.keys()){
+        qDebug() << key << " = " << myHash[key];
+    }
 
     return true;
 }
