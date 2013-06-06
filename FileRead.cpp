@@ -31,7 +31,7 @@ QList<QString> FileRead::compareFileList(QHash<QString, QString> local, QHash<QS
     QString key;
     QList<QString> result;
     foreach(key, local.keys()){
-        if(!remote.contains(key) && remote[key] != local[key]){
+        if(!remote.contains(key) || remote[key] != local[key]){
             result.append(local[key]);
         }
     }
