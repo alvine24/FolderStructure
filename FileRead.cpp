@@ -37,3 +37,33 @@ QList<QString> FileRead::compareFileList(QHash<QString, QString> local, QHash<QS
     }
     return result;
 }
+
+
+bool FileRead::saveToUserFolder(QString &filename, QIODevice *data){
+    QFile file(filename);
+    if(!file.open(QIODevice::WriteOnly)){
+        return false;
+    }
+    file.write(data->readAll());
+    file.close();
+
+    return true;
+}
+
+QString FileRead::getFilename(QUrl url){
+    QString myPath = url.path();
+
+    QString fileBaseName = QFileInfo(myPath).fileName();
+
+    if(fileBaseName.isEmpty()){
+        //To do
+    }
+    if(QFile::exists(fileBaseName)){ //file already exists
+        //Save the name with a new name
+        int i = 0;
+        while(QFile::exists(fileBaseName+QString::number(i)))
+            i++;
+        fileBaseName += QString::number(i);
+    }
+    return fileBaseName;
+}

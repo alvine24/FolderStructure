@@ -23,6 +23,7 @@
 #include <QDir>
 #include <QHash>
 #include <QList>
+#include <QUrl>
 #include "FileHash.h"
 
 class FileRead
@@ -52,6 +53,27 @@ public:
      * @return is a QList of the file that are not on the remote or server
      */
     QList<QString> compareFileList(QHash<QString, QString> local, QHash<QString, QString> remote);
+
+    /**
+     * @brief saveToUserFolder
+     * This function helps to save a file to the user local folder
+     * @param filename is the name of the file that will
+     * be saved to the local machine
+     * @param data is the content of the file that has been retrieve
+     * from the remote
+     * @return a boolean that helps to know if the file has been
+     * successfully saved
+     */
+    bool saveToUserFolder(QString &filename, QIODevice *data);
+
+    /**
+     * @brief getFilename
+     * This function helps to get the filename and its path
+     * @param url is the url sent by the remote to know where
+     * should the file been saved
+     * @return is the filename
+     */
+    QString getFilename(QUrl url);
 
     bool mresult;
     QHash<QString, QString> mylist;
